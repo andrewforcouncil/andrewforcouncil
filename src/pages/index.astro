@@ -1,0 +1,67 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Media from "../components/Media.astro";
+import Countdown from "../components/Countdown.astro";
+import Dropdown from "../components/Dropdown.astro";
+
+import Bold from "../components/Bold.astro";
+
+import Platform from "../layouts/Platform.astro";
+import AboutMe from "../layouts/AboutMe.astro";
+
+import HousingCrisis from "../layouts/HousingCrisis.astro";
+import ActiveTransport from "../layouts/ActiveTransport.astro";
+import TownGown from "../layouts/TownGown.astro";
+import Taxes from "../layouts/Taxes.astro";
+import NoSurprises from "../layouts/NoSurprises.astro";
+import MeasuredDone from "../layouts/MeasuredDone.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
+        <title>Andrew DaCosta For Sydenham</title>
+        <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    </head>
+
+    <body class="bg-main flex-1">
+        <Header />
+        <main>
+            <Media />
+            <Countdown
+                title="Countdown to Election Day"
+                target="2026-10-26T00:00:00.000Z"
+            />
+            <Platform>
+                <Dropdown title="The Housing Crisis">
+                    <HousingCrisis />
+                </Dropdown>
+                <Dropdown title="Active Transportation First">
+                    <ActiveTransport />
+                </Dropdown>
+                <Dropdown title="Town & Gown">
+                    <TownGown />
+                </Dropdown>
+                <Dropdown title="1.5%">
+                    <Taxes />
+                </Dropdown>
+                <Dropdown title="No Surprises!">
+                    <NoSurprises />
+                </Dropdown>
+                <Dropdown title="What Gets Measured, Gets Done">
+                    <MeasuredDone />
+                </Dropdown>
+            </Platform>
+            <AboutMe />
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

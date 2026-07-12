@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+import Button from "./Button.astro";
+const links = [
+    { href: "/#platform", text: "My Platform" },
+    { href: "/#about-me", text: "About Me" },
+    { href: "/contact", text: "Contact" },
+    { href: "/get-involved", text: "Get Involved", button: true },
+];
+---
+
+<header class="my-1 bg-header text-ink shadow sticky top-0 z-50">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div>
+            <a href="/" class="text-2xl font-bold"> Andrew DaCosta </a>
+            <br />
+            <p class="text-sm underline underline-offset-2">for Sydenham District Councillor</p>
+        </div>
+
+        <nav>
+            <ul class="flex items-center gap-6">
+                {
+                    links.map((link) => (
+                        <li class="flex items-center"> <!-- Added flex here too for consistency -->
+                            {!link.button ? (
+                                <a href={link.href} class="transition-colors hover:text-blue-400">
+                                    {link.text}
+                                </a>
+                            ) : (
+                                <Button href={link.href}>
+                                    {link.text}
+                                </Button>
+                            )}
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+    </div>
+</header>

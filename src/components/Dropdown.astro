@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<details
+    class="group w-full font-mono rounded-lg border border-slate-700 bg-dropdown"
+>
+    <summary
+        class="select-none flex cursor-pointer list-none items-center justify-between px-6 py-4 text-lg font-semibold text-white"
+    >
+        {title}
+
+        <svg
+            class="h-5 w-5 transition-transform duration-300 group-open:rotate-180"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </summary>
+
+    <div class="border-t border-slate-700 px-6 py-4 text-white">
+        <slot />
+    </div>
+</details>

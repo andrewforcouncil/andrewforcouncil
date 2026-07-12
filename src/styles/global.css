@@ -1,0 +1,78 @@
+@import url("https://googleapis.com");
+@import "tailwindcss";
+
+@theme {
+    --default-font-family: "Heebo", sans-serif;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+ul ul {
+    list-style-type: circle;
+}
+
+li {
+    margin-bottom: 0.25rem;
+}
+
+.font-mono {
+    font-family: "Noto Serif", serif;
+}
+
+.bg-main {
+    background-color: #eee1d3;
+}
+
+.bg-section {
+    background-color: #24438f;
+}
+
+.bg-dropdown {
+    background-color: #315bc4;
+}
+
+.bg-header {
+    background-color: #f6eee2;
+}
+
+.text-dark-orange {
+    color: #b85710;
+}
+
+.text-cool-orange {
+    color: #df6d16;
+}
+
+.text-light-orange {
+    color: #f0a35c;
+}
+
+.text-almond {
+    color: #f6eee2;
+}
+
+.text-ink {
+    color: #2b2620;
+}
+
+.bg-cool-orange {
+    background-color: #df6d16;
+}
+
+.border-light-blue {
+    border-color: #315bc4;
+}
+
+.bg-about {
+    background-color: #24438f;
+}
+
+.media-height {
+    height: 95vh;
+    align-self: center;
+    max-block-size: 95vh;
+    max-inline-size: 95vh;
+}

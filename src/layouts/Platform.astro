@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+---
+
+<section class="my-12 mx-auto max-w-5xl px-4">
+    <!-- Title -->
+    <h2 id="platform" class="text-5xl font-bold tracking-tight text-slate-900">
+        My Platform
+    </h2>
+
+    <!-- Indented Content Container -->
+    <div class="mt-6 pl-6 border-l-2 border-black">
+        <div class="text-lg text-slate-600 mb-6 font-mono">
+            <p>
+                There will be significant policy decisions about the future of
+                our city that City Council will need to make over the next
+                four-year term. I want you to know <b>exactly where I stand</b> on
+                these issues when you vote for me.
+            </p>
+            <p class="my-3">
+                My platform is built on taking specific action, and measuring
+                results.
+            </p>
+            <p>
+                I will be adding to my platform throughout the duration of the
+                election campaign. Check back often for updates!
+            </p>
+        </div>
+        <div class="space-y-4">
+            <slot />
+        </div>
+    </div>
+</section>

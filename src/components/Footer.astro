@@ -1,0 +1,92 @@
+---
+import "../styles/global.css";
+import Bold from "./Bold.astro";
+
+const year = new Date().getFullYear();
+const link =
+    "https://www.cityofkingston.ca/council-and-city-administration/elections/voters/";
+---
+
+<footer class="mt-4 border-t border-gray-200 bg-section">
+    <div class="mx-auto max-w-7xl px-6 py-12">
+        <div class="grid gap-10 md:grid-cols-3">
+            <!-- Navigation -->
+            <section>
+                <h3 class="mb-4 text-lg font-semibold text-almond">
+                    Navigation
+                </h3>
+
+                <nav class="flex flex-col gap-2 text-almond">
+                    <!-- Replace with your pages -->
+                    <a href="/" class="transition hover:text-"> Home </a>
+
+                    <a href="/#platform" class="transition hover:text-blue-200">
+                        Platform
+                    </a>
+
+                    <a href="/#about-me" class="transition hover:text-blue-200">
+                        About
+                    </a>
+
+                    <a href="/contact" class="transition hover:text-blue-200">
+                        Contact
+                    </a>
+
+                    <a
+                        href="/get-involved"
+                        class="transition hover:text-blue-200"
+                    >
+                        Get Involved
+                    </a>
+                </nav>
+            </section>
+
+            <!-- Contact -->
+            <section>
+                <h3 class="mb-4 text-lg font-semibold text-almond">Contact</h3>
+
+                <div class="space-y-2 text-almond">
+                    <p>Email: andrewforcouncil2026@gmail.com</p>
+                    <p>Phone: (343)-422-5096</p>
+                </div>
+
+                <div class="mt-6 flex gap-4 text-almond">
+                    <!-- Add social icons later -->
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </section>
+
+            <!-- Voting -->
+            <section class="bg-header rounded-2xl px-4 py-4">
+                <h3 class="mb-4 text-lg font-semibold text-black">
+                    How to Vote
+                </h3>
+
+                <p>
+                    <b>Election Day</b> day is on <b> October 26</b>, with
+                    advance voting taking place on <b>October 16 and 17</b>, and <b
+                        >online voting</b
+                    > being available from <b>October 14-26</b>. <a
+                        href={link}
+                        target="_blank"
+                        class="text-blue-700 underline"
+                        >Click here to learn more</a
+                    >.
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <div
+        class="mt-12 py-4 border-t border-gray-200 pt-6 text-center text-sm text-gray-500"
+    >
+        <p>
+            © {year} Andrew For Council. All rights reserved.
+        </p>
+
+        <p class="mt-2">
+            Website developed and maintained by <u>Wesley King</u>
+        </p>
+    </div>
+</footer>

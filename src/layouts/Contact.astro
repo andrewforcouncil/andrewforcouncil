@@ -1,0 +1,77 @@
+---
+import "../styles/global.css";
+
+const email = "andrewforcouncil2026@gmail.com";
+const phone = "(343) 422-5096";
+
+const socialButtons = [
+    { name: "Instagram", href: "https://www.instagram.com/andrewforcouncil/" },
+    { name: "Facebook", href: "https://www.facebook.com/andrew4council/" },
+    { name: "Tiktok", href: "https://www.tiktok.com/@andrew4council" },
+    { name: "YouTube", href: "https://www.youtube.com/@andrewforcouncil" },
+];
+---
+
+<main class="min-h-fit bg-almond text-slate-900">
+    <section class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+        <!-- Main Message -->
+        <div class="space-y-4">
+            <h1
+                class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+            >
+                I would love to hear from you!
+            </h1>
+
+            <p class="text-lg leading-relaxed text-slate-700 sm:text-xl">
+                Please reach out with any questions, comments, or concerns you
+                may have about my campaign, or our district.
+            </p>
+        </div>
+
+        <!-- Contact Details -->
+        <div
+            class="mt-8 space-y-2 text-lg font-medium text-slate-900 sm:text-xl"
+        >
+            <div>
+                <a
+                    href={`mailto:${email}`}
+                    class="text-blue-700 underline hover:text-blue-900"
+                >
+                    {email}
+                </a>
+            </div>
+
+            <div>
+                <a
+                    href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
+                    class="hover:text-blue-700"
+                >
+                    {phone}
+                </a>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="mt-12 border-t border-slate-200 pt-8">
+            <h2 class="text-xl font-semibold text-slate-900">
+                Keep up with the campaign on social media:
+            </h2>
+
+            <!-- Buttons -->
+            <div class="mt-6 flex flex-wrap gap-3 sm:gap-4">
+                {
+                    socialButtons.map((btn) => (
+                        <a
+                            href={btn.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-base font-medium text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+                        >
+                            {btn.name}
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</main>
