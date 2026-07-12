@@ -3,22 +3,23 @@ import "../styles/global.css";
 ---
 
 <div
-    class="relative flex w-screen items-center justify-center overflow-hidden py-3"
+    class="relative flex w-full items-center justify-center overflow-hidden px-3 py-3 md:w-screen md:px-0"
 >
     <!-- Background image -->
     <img
         src="/UniversityAve.webp"
         alt=""
-        class="absolute inset-0 h-fit w-full object-cover -z-10"
+        class="absolute inset-0 -z-10 h-full w-full object-cover md:h-fit"
     />
 
     <!-- Optional dark overlay -->
-    <div class="absolute inset-0 bg-black/40 -z-10"></div>
+    <div class="absolute inset-0 -z-10 bg-black/40"></div>
 
     <!-- YouTube embed -->
     <iframe
-        class="aspect-video w-full max-w-5xl rounded-xl shadow-xl"
+        class="aspect-video w-full max-w-5xl rounded-lg shadow-xl md:rounded-xl"
         src="https://www.youtube.com/embed/iYlODtkyw_I"
         title="YouTube video player"
+        loading="lazy"
         allowfullscreen></iframe>
 </div>

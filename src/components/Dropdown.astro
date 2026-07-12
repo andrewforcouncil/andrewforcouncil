@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+
 interface Props {
     title: string;
 }
@@ -8,19 +9,20 @@ const { title } = Astro.props;
 ---
 
 <details
-    class="group w-full font-mono rounded-lg border border-slate-700 bg-dropdown"
+    class="group w-full rounded-lg border border-slate-700 bg-dropdown font-mono"
 >
     <summary
-        class="select-none flex cursor-pointer list-none items-center justify-between px-6 py-4 text-lg font-semibold text-white"
+        class="flex min-h-12 cursor-pointer select-none list-none items-center justify-between px-4 py-3 text-base font-semibold text-white md:px-6 md:py-4 md:text-lg"
     >
-        {title}
+        <span class="min-w-0 wrap-break-word pr-3">{title}</span>
 
         <svg
-            class="h-5 w-5 transition-transform duration-300 group-open:rotate-180"
+            class="h-5 w-5 shrink-0 transition-transform duration-300 group-open:rotate-180"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            aria-hidden="true"
         >
             <path
                 stroke-linecap="round"
@@ -30,7 +32,7 @@ const { title } = Astro.props;
         </svg>
     </summary>
 
-    <div class="border-t border-slate-700 px-6 py-4 text-white">
+    <div class="border-t border-slate-700 px-4 py-4 text-white md:px-6">
         <slot />
     </div>
 </details>

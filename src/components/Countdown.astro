@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import Button from "./Button.astro";
+
 interface Props {
     title?: string;
     target: string; // ISO date
@@ -11,21 +11,25 @@ const { title = "Time Remaining", target } = Astro.props;
 
 <section>
     <div class="bg-section py-6">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-6">
-            <div class="h-px flex-1 bg-gray-600"></div>
+        <div
+            class="mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6"
+        >
+            <div class="h-px min-w-0 flex-1 bg-gray-600"></div>
 
-            <div class="mx-8 text-center">
-                <h2 class="text-xl font-bold text-almond">{title}</h2>
+            <div class="mx-2 min-w-0 text-center sm:mx-4 md:mx-8">
+                <h2 class="text-lg font-bold text-almond md:text-xl">
+                    {title}
+                </h2>
                 <p
                     id="countdown"
                     data-target={target}
-                    class="text-3xl font-mono text-cool-orange"
+                    class="whitespace-nowrap font-mono text-xl text-cool-orange sm:text-2xl md:text-3xl"
                 >
                     Loading...
                 </p>
             </div>
 
-            <div class="h-px flex-1 bg-gray-600"></div>
+            <div class="h-px min-w-0 flex-1 bg-gray-600"></div>
         </div>
     </div>
 

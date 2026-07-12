@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Button from "./Button.astro";
+
 const links = [
     { href: "/#platform", text: "My Platform" },
     { href: "/#about-me", text: "About Me" },
@@ -9,27 +10,100 @@ const links = [
 ];
 ---
 
-<header class="my-1 bg-header text-ink shadow sticky top-0 z-50">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <div>
-            <a href="/" class="text-2xl font-bold"> Andrew DaCosta </a>
-            <br />
-            <p class="text-sm underline underline-offset-2">for Sydenham District Councillor</p>
+<header class="sticky top-0 z-50 my-1 bg-header text-ink shadow">
+    <div
+        class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:gap-0 md:px-6 md:py-4"
+    >
+        <div class="min-w-0">
+            <a href="/" class="text-xl font-bold md:text-2xl">
+                Andrew DaCosta
+            </a>
+            <p
+                class="text-xs leading-tight underline underline-offset-2 sm:text-sm md:leading-5"
+            >
+                for Sydenham District Councillor
+            </p>
         </div>
 
-        <nav>
+        <!-- Mobile navigation -->
+        <details class="group relative shrink-0 md:hidden" data-mobile-nav>
+            <summary
+                class="flex h-11 w-11 cursor-pointer list-none items-center [&::-webkit-details-marker]:hidden justify-center rounded-lg transition-colors hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                <span class="sr-only">Toggle navigation menu</span>
+
+                <svg
+                    class="h-6 w-6 group-open:hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+
+                <svg
+                    class="hidden h-6 w-6 group-open:block"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </summary>
+
+            <nav
+                class="absolute right-0 top-full mt-2 w-64 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-black/10 bg-header shadow-xl"
+            >
+                <ul class="mobile-nav-list flex flex-col gap-1">
+                    {
+                        links.map((link) => (
+                            <li>
+                                {!link.button ? (
+                                    <a
+                                        href={link.href}
+                                        class="block rounded-lg px-4 py-3 transition-colors hover:bg-black/5 hover:text-blue-400"
+                                    >
+                                        {link.text}
+                                    </a>
+                                ) : (
+                                    <Button href={link.href} class="w-full">
+                                        {link.text}
+                                    </Button>
+                                )}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+        </details>
+
+        <!-- Desktop navigation -->
+        <nav class="hidden md:block">
             <ul class="flex items-center gap-6">
                 {
                     links.map((link) => (
-                        <li class="flex items-center"> <!-- Added flex here too for consistency -->
+                        <li class="flex items-center">
                             {!link.button ? (
-                                <a href={link.href} class="transition-colors hover:text-blue-400">
+                                <a
+                                    href={link.href}
+                                    class="transition-colors hover:text-blue-400"
+                                >
                                     {link.text}
                                 </a>
                             ) : (
-                                <Button href={link.href}>
-                                    {link.text}
-                                </Button>
+                                <Button href={link.href}>{link.text}</Button>
                             )}
                         </li>
                     ))
@@ -38,3 +112,31 @@ const links = [
         </nav>
     </div>
 </header>
+
+<script>
+    document.querySelectorAll("[data-mobile-nav]").forEach((menu) => {
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                menu.removeAttribute("open");
+            });
+        });
+    });
+</script>
+
+<style>
+    .mobile-nav-list {
+        margin: 0 !important;
+        padding: 0.75rem !important;
+        list-style: none !important;
+    }
+
+    .mobile-nav-list > li {
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    .mobile-nav-list > li::marker {
+        content: "" !important;
+    }
+</style>

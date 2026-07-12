@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import Bold from "./Bold.astro";
 
 const year = new Date().getFullYear();
 const link =
@@ -10,10 +9,10 @@ const phone = "(343) 422-5096";
 ---
 
 <footer class="mt-4 border-t border-gray-200 bg-section">
-    <div class="mx-auto max-w-7xl px-6 py-12">
-        <div class="grid gap-10 md:grid-cols-3">
+    <div class="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12">
+        <div class="grid gap-8 md:grid-cols-3 md:gap-10">
             <!-- Navigation -->
-            <section>
+            <section class="min-w-0">
                 <h3 class="mb-4 text-lg font-semibold text-almond">
                     Navigation
                 </h3>
@@ -45,14 +44,14 @@ const phone = "(343) 422-5096";
             </section>
 
             <!-- Contact -->
-            <section>
+            <section class="min-w-0">
                 <h3 class="mb-4 text-lg font-semibold text-almond">Contact</h3>
 
                 <div class="space-y-2 text-almond">
                     <p>
                         Email: <a
                             href={`mailto:${email}`}
-                            class="underline hover:text-blue-200"
+                            class="break-all underline hover:text-blue-200 sm:break-normal"
                         >
                             {email}
                         </a>
@@ -67,33 +66,37 @@ const phone = "(343) 422-5096";
                     </p>
                 </div>
 
-                <div class="mt-6 flex gap-4 text-almond">
+                <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-almond">
                     <!-- Add social icons later -->
                     <a
                         href="https://www.instagram.com/andrewforcouncil/"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="underline">Instagram</a
                     >
                     <a
                         href="https://www.facebook.com/andrew4council/"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="underline">Facebook</a
                     >
                     <a
                         href="https://www.tiktok.com/@andrew4council"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="underline">TikTok</a
                     >
                     <a
                         href="https://www.youtube.com/@andrewforcouncil"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="underline">YouTube</a
                     >
                 </div>
             </section>
 
             <!-- Voting -->
-            <section class="bg-header rounded-2xl px-4 py-4">
+            <section class="min-w-0 rounded-2xl bg-header px-4 py-4">
                 <h3 class="mb-4 text-lg font-semibold text-black">
                     How to Vote
                 </h3>
@@ -105,6 +108,7 @@ const phone = "(343) 422-5096";
                     > being available from <b>October 14-26</b>. <a
                         href={link}
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="text-blue-700 underline"
                         >Click here to learn more</a
                     >.
@@ -114,11 +118,9 @@ const phone = "(343) 422-5096";
     </div>
 
     <div
-        class="mt-12 py-4 border-t border-gray-200 pt-6 text-center text-sm text-gray-500"
+        class="mt-10 border-t border-gray-200 px-4 py-4 pt-6 text-center text-sm text-gray-500 md:mt-12 md:px-0"
     >
-        <p>
-            © {year} Andrew For Council. All rights reserved.
-        </p>
+        <p>© {year} Andrew For Council. All rights reserved.</p>
 
         <p class="mt-2">
             Website developed and maintained by <u>Wesley King</u>
