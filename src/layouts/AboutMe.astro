@@ -1,59 +1,70 @@
 ---
 import "../styles/global.css";
+import Bold from "../components/Bold.astro";
 ---
 
 <div class="bg-about">
-    <section class="mx-auto max-w-6xl w-full px-6 py-16">
-        <div class="grid items-center gap-1 md:grid-cols-2">
+    <section class="mx-auto w-full max-w-6xl px-6 py-16">
+        <div class="grid items-center gap-12 md:grid-cols-2">
             <!-- Image -->
             <div class="flex justify-center">
                 <img
                     src="./Profile.webp"
                     alt="Andrew DaCosta's portrait"
-                    class="h-138 w-100 rounded-2xl object-cover shadow-xl border-10 border-light-blue"
+                    class="h-138 w-100 rounded-2xl border-10 border-light-blue object-cover shadow-xl"
                 />
             </div>
 
             <!-- Text -->
-            <div class="space-y-4">
+            <div class="space-y-6 font-mono">
                 <h2
                     id="about-me"
-                    class="text-4xl text-white font-bold tracking-tight my-10"
+                    class="my-10 font-sans text-4xl font-bold tracking-tight text-white"
                 >
                     About Me
                 </h2>
 
                 <p class="text-lg leading-relaxed text-almond">
-                    Hi, I’m Andrew DaCosta. I live, work, and study in the
-                    Sydenham District, and am running for City Councillor.
+                    Hi, I’m <Bold>Andrew DaCosta</Bold>. I live, work, and study
+                    in the Sydenham District, and am running for City
+                    Councillor.
                 </p>
 
                 <p class="text-lg leading-relaxed text-almond">
-                    I was born at the Kingston General Hospital, and have lived
-                    in Kingston my entire life. I now attend Queen’s University,
-                    where I am enrolled in Political Studies. This summer, I am
-                    working in a seasonal student position at one of the
-                    well-known heritage museum properties in the Sydenham
-                    District. I am also English-French bilingual, and an avid
-                    curler!
+                    I was born at Kingston General Hospital, and
+                    <Bold> have lived in Kingston my entire life</Bold>. I now
+                    attend
+                    <Bold> Queen’s University</Bold>, where I am enrolled in
+                    Political Studies. This summer, I am working in a seasonal
+                    student position at one of the well-known heritage museum
+                    properties in the Sydenham District. I am also
+                    English-French bilingual, and an avid curler!
                 </p>
 
                 <p class="text-lg leading-relaxed text-almond">
-                    Although I am a Queen’s student, I want to be clear: I am
-                    not running a campaign focused only on Queen’s
-                    students—though I do hope that the Queen’s student community
-                    (and more young people) become more engaged with municipal
-                    politics through my involvement in this election.
+                    Although I am a Queen’s student, I want to be clear: <Bold>
+                        I am not running a campaign focused only on Queen’s
+                        students
+                    </Bold>
+                    —though I do hope that the Queen’s student community (and more
+                    young people) become more engaged with municipal politics through
+                    my involvement in this election.
                 </p>
 
                 <p class="text-lg leading-relaxed text-almond">
-                    My election campaign and platform is for all residents of
-                    Sydenham District, students or otherwise. I encourage you to <a
+                    My election campaign and platform is for
+                    <Bold> all residents of Sydenham District</Bold>, students
+                    or otherwise. I encourage you to <a
                         href="#platform"
-                        class="text-cool-orange underline">read my platform</a
-                    > and <a href="/contact" class="text-cool-orange underline"
-                        >reach out to me</a
-                    > with any questions you may have!
+                        class="text-cool-orange underline"
+                    >
+                        read my platform
+                    </a> and <a
+                        href="/contact"
+                        class="text-cool-orange underline"
+                    >
+                        reach out to me
+                    </a> with any questions you may have!
                 </p>
 
                 <p class="text-lg leading-relaxed text-almond">
