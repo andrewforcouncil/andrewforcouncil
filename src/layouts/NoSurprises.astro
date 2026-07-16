@@ -19,7 +19,7 @@ import Bold from "../components/Bold.astro";
 
     <p>Here’s how I’d like to help with that:</p>
 
-    <ul>
+    <ol class="list-decimal space-y-4 pl-8 md:pl-10">
         <li>
             <Bold>Direct Democracy:</Bold> I will allocate a <Bold
                 >portion of my Council salary</Bold
@@ -30,8 +30,11 @@ import Bold from "../components/Bold.astro";
             feedback on the issue. It’s not intended to be scientific, but it is intended
             to keep you <Bold>informed</Bold> and <Bold>engaged</Bold> by getting
             your quick opinion with the click of a button. Don’t worry, this isn’t
-            a substitute for traditional contact methods; you’ll also be able to call
-            or email me <a href="/contact">Contact page</a> if you want to connect
+            a substitute for traditional contact methods; you’ll also be able to <a
+                href="/contact"
+                class="underline underline-offset-2"
+                >call or email me</a
+            > if you want to connect
             about an issue.
         </li>
 
@@ -44,10 +47,69 @@ import Bold from "../components/Bold.astro";
                 >key stakeholders</Bold
             > in Sydenham District to introduce myself and hear their thoughts on
             what they need over the next four years from City Hall.
-        </li>
-    </ul>
 
-    <ul start="3">
+            <details
+                class="group mt-4 rounded-lg border border-slate-700 bg-dropdown"
+            >
+                <summary
+                    class="select-none flex cursor-pointer list-none items-center justify-between px-4 py-3 font-semibold text-white"
+                >
+                    Stakeholders
+
+                    <svg
+                        class="h-5 w-5 shrink-0 transition-transform duration-300 group-open:rotate-180"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                        ></path>
+                    </svg>
+                </summary>
+
+                <div class="border-t border-slate-700 px-4 py-4 text-white">
+                    <ul class="list-disc space-y-2 pl-6">
+                        <li>Kingston Health Sciences Centre</li>
+                        <li>Queen's University Administrative Leadership</li>
+                        <li>Providence Care</li>
+                        <li>Alma Mater Society (AMS)</li>
+                        <li>The Graduate Student Society (SGPS)</li>
+                        <li>Queen's University Housing Office</li>
+                        <li>Kingston Tennis Club - Board of Directors</li>
+                        <li>Kingston Lawnbowling Club</li>
+                        <li>Kingston Yacht Club</li>
+                        <li>Isabel Bader Centre for the Performing Arts</li>
+                        <li>Tett Centre for Creativity and Learning</li>
+                        <li>Sydenham District Councillor - Conny Glenn</li>
+                        <li>Portsmouth District Councillor - Don Amos</li>
+                        <li>Williamsville District Councillor - Vincent Cinanni</li>
+                        <li>King's Town District Councillor - Greg Ridge</li>
+                        <li>Sydenham District Association</li>
+                        <li>Frontenac Heritage Foundation</li>
+                        <li>Heritage Properties Committee Members</li>
+                        <li>Kingston Coalition for Active Transportation</li>
+                        <li>
+                            Winston Churchill PS - School Administration and Parent
+                            Council
+                        </li>
+                        <li>
+                            Sydenham PS  - School Administation and Parent Council
+                        </li>
+                        <li>Coalition of Kingston Communities</li>
+                        <li>City of Kingston - Senior Staff</li>
+                    </ul>
+                </div>
+            </details>
+        </li>
+    </ol>
+
+    <ol start="3" class="list-decimal space-y-4 pl-8 md:pl-10">
         <li>
             <Bold>Committees:</Bold> Important policies and major projects need to
             be thoroughly <Bold>vetted</Bold>, <Bold>debated</Bold>, and <Bold
@@ -72,11 +134,13 @@ import Bold from "../components/Bold.astro";
             committee to undertake more <Bold>detailed reviews of budgets</Bold> and
             to discuss financial strategy.
         </li>
-    </ul>
+    </ol>
 
-    <p><u><Bold>You should vote for me if:</Bold></u></p>
+    <p class="text-xl font-semibold text-cool-orange">
+        <u><Bold>You should vote for me if:</Bold></u>
+    </p>
 
-    <ul>
+    <ul class="list-disc space-y-3 pl-8 md:pl-10">
         <li>
             You want an <Bold>easy</Bold>, <Bold>low-time-commitment</Bold> method
             to stay <Bold>informed</Bold> about the issues that will affect you.
@@ -94,7 +158,7 @@ import Bold from "../components/Bold.astro";
         </li>
     </ul>
 
-    <p>
+    <p class="text-xl font-semibold text-cool-orange">
         <u
             ><Bold
                 >If you’re not sure if you should vote for me, here is what you
@@ -103,7 +167,7 @@ import Bold from "../components/Bold.astro";
         >
     </p>
 
-    <ul>
+    <ul class="list-disc space-y-3 pl-8 md:pl-10">
         <li>
             How will you <Bold>keep in touch</Bold> with me about <Bold
                 >important issues</Bold
