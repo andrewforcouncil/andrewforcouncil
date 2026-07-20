@@ -28,54 +28,97 @@ import Bold from "../components/Bold.astro";
         us:
     </p>
 
-    <ol class="list-decimal space-y-4 pl-8 md:pl-10">
-        <li>
-            <Bold>Sidewalk Improvements:</Bold> I will advocate for building missing
-            sections of
-            <Bold> sidewalks</Bold>/<Bold>multi-use paths</Bold> in the following
-            areas in our district:
-            <ul class="mt-3 list-disc space-y-2 pl-8">
-                <li>
-                    <Bold>King St.</Bold> (south side) between <Bold
-                        >Sir John A. Macdonald Blvd.</Bold
-                    > and <Bold>Breakwater Park</Bold>.
-                </li>
-                <li><Bold>Court St.</Bold></li>
-                <li>Both sides of <Bold>Sir John A. Macdonald Blvd.</Bold></li>
-            </ul>
-        </li>
+    <div class="flow-root">
+        <!--
+            Desktop image:
+            It must appear before the list so every numbered section can wrap around it.
+        -->
+        <figure
+            class="hidden md:float-right md:mb-5 md:ml-8 md:block md:w-72 lg:w-96"
+        >
+            <img
+                src="/King St. (South)1.webp"
+                alt="A section of sidewalk in Sydenham District"
+                class="h-auto w-full rounded-lg"
+                loading="lazy"
+            />
 
-        <li>
-            <Bold>Pedestrian Crossing Lights:</Bold>
-            <ul class="mt-3 list-disc space-y-2 pl-8">
-                <li>
-                    <Bold>Add</Bold> a pedestrian crossing light on <Bold
-                        >Union St.</Bold
-                    > at <Bold>MacDonnell St.</Bold> to <Bold
-                        >improve safety</Bold
-                    > at this <Bold>existing crossing guard location</Bold> for Winston
-                    Churchill Public School students and improve safety for everyone
-                    crossing at this location at any time of day.
-                </li>
-                <li>
-                    <Bold>Add</Bold> a pedestrian crossing light on <Bold
-                        >Johnson St.</Bold
-                    > at <Bold>College St.</Bold> to provide a safe place for pedestrians
-                    to cross in the section of Johnson St. between <Bold
-                        >Palace Rd.</Bold
-                    > and <Bold>Macdonnell St.</Bold>
-                </li>
-            </ul>
-        </li>
+            <figcaption class="mt-2 text-sm text-slate-400">
+                A worn-down path on the south side of King St.
+            </figcaption>
+        </figure>
 
-        <li>
-            <Bold>Transit Frequency:</Bold>
-            <Bold> Increase the frequency</Bold> of Kingston Transit service routes
-            along <Bold>Union St.</Bold> and <Bold>King St.</Bold> that connect Sydenham
-            District to <Bold>downtown</Bold> and the rest of the City, including
-            commercial areas such as the Kingston Centre and the Cataraqui Mall.
-        </li>
-    </ol>
+        <ol class="list-decimal space-y-4 pl-8 md:pl-10">
+            <li>
+                <Bold>Sidewalk Improvements:</Bold> I will advocate for building missing
+                sections of <Bold>sidewalks</Bold>/<Bold>multi-use paths</Bold> in
+                the following areas in our district:
+
+                <ul class="mt-3 list-disc space-y-2 pl-8">
+                    <li>
+                        <Bold>King St.</Bold> (south side) between <Bold
+                            >Sir John A. Macdonald Blvd.</Bold
+                        > and <Bold>Breakwater Park</Bold>.
+                    </li>
+
+                    <li>
+                        <Bold>Court St.</Bold>
+                    </li>
+
+                    <li>
+                        Both sides of <Bold>Sir John A. Macdonald Blvd.</Bold>
+                    </li>
+                </ul>
+
+                <!-- Mobile image: appears after the Sidewalk Improvements section -->
+                <figure class="mt-5 md:hidden">
+                    <img
+                        src="/King St. (South)1.webp"
+                        alt="A section of sidewalk in Sydenham District"
+                        class="h-auto w-full rounded-lg"
+                        loading="lazy"
+                    />
+
+                    <figcaption class="mt-2 text-sm text-slate-400">
+                        Proposed sidewalk improvement area.
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li>
+                <Bold>Pedestrian Crossing Lights:</Bold>
+
+                <ul class="mt-3 list-disc space-y-2 pl-8">
+                    <li>
+                        <Bold>Add</Bold> a pedestrian crossing light on <Bold
+                            >Union St.</Bold
+                        > at <Bold>MacDonnell St.</Bold> to <Bold
+                            >improve safety</Bold
+                        > at this <Bold>existing crossing guard location</Bold> for
+                        Winston Churchill Public School students and improve safety
+                        for everyone crossing at this location at any time of day.
+                    </li>
+
+                    <li>
+                        <Bold>Add</Bold> a pedestrian crossing light on <Bold
+                            >Johnson St.</Bold
+                        > at <Bold>College St.</Bold> to provide a safe place for
+                        pedestrians to cross in the section of Johnson St. between
+                        <Bold>Palace Rd.</Bold> and <Bold>Macdonnell St.</Bold>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <Bold>Transit Frequency:</Bold>
+                <Bold>Increase the frequency</Bold> of Kingston Transit service routes
+                along <Bold>Union St.</Bold> and <Bold>King St.</Bold> that connect
+                Sydenham District to <Bold>downtown</Bold> and the rest of the City,
+                including commercial areas such as the Kingston Centre and the Cataraqui
+                Mall.
+            </li>
+        </ol>
+    </div>
 
     <p class="text-xl font-semibold text-cool-orange">
         <u><Bold>You should vote for me if:</Bold></u>
