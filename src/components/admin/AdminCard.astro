@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  fullWidth?: boolean;
+}
+
+const {
+  title,
+  fullWidth = false,
+} = Astro.props;
+---
+
+<section class:list={["admin-card", { "admin-card--full": fullWidth }]}>
+  <h2>{title}</h2>
+  <slot />
+</section>
