@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import Bold from "../components/Bold.astro";
+import Profile from "../../public/Profile.webp";
+import { Image } from "astro:assets";
 ---
 
 <div class="bg-about">
@@ -8,8 +10,8 @@ import Bold from "../components/Bold.astro";
         <div class="grid items-center gap-12 md:grid-cols-2">
             <!-- Image -->
             <div class="flex justify-center">
-                <img
-                    src="./Profile.webp"
+                <Image
+                    src={Profile}
                     alt="Andrew DaCosta's portrait"
                     class="h-138 w-100 rounded-2xl border-10 border-light-blue object-cover shadow-xl"
                 />
