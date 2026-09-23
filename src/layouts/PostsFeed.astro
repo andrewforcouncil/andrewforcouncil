@@ -1,0 +1,201 @@
+---
+import "../styles/global.css";
+---
+
+<main class="min-h-screen bg-main text-neutral-900">
+    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+        <header class="mb-8 border-b border-neutral-200 pb-6">
+            <h1 class="text-3xl font-bold tracking-tight">Latest Updates</h1>
+
+            <p class="mt-2 text-neutral-600">
+                News, announcements, and campaign updates.
+            </p>
+        </header>
+
+        <div id="post-feed" class="space-y-10" aria-live="polite">
+            <p id="post-loading" class="py-12 text-center text-neutral-500">
+                Loading posts...
+            </p>
+        </div>
+
+        <div
+            id="post-error"
+            class="hidden rounded-md bg-red-50 px-4 py-3 text-red-800"
+            role="alert"
+        >
+            Unable to load posts.
+        </div>
+    </div>
+</main>
+
+<script>
+    const postApi = "https://api.andrewforcouncil.ca/posts";
+
+    interface Post {
+        id: number;
+        title: string;
+        slug: string;
+        body: string;
+        video_url?: string | null;
+        video_provider?: string | null;
+        created_at: string;
+    }
+
+    const feed = document.querySelector<HTMLDivElement>("#post-feed");
+    const loading =
+        document.querySelector<HTMLParagraphElement>("#post-loading");
+    const errorBox = document.querySelector<HTMLDivElement>("#post-error");
+
+    function createVideoEmbed(post: Post): HTMLElement | null {
+        if (!post.video_url) {
+            return null;
+        }
+
+        let url: URL;
+
+        try {
+            url = new URL(post.video_url);
+        } catch {
+            return null;
+        }
+
+        let embedURL: string | null = null;
+
+        if (
+            post.video_provider === "youtube" ||
+            url.hostname.includes("youtube.com") ||
+            url.hostname === "youtu.be"
+        ) {
+            let videoID: string | null = null;
+
+            if (url.hostname === "youtu.be") {
+                videoID = url.pathname.slice(1);
+            } else {
+                videoID = url.searchParams.get("v");
+
+                if (!videoID && url.pathname.startsWith("/embed/")) {
+                    videoID = url.pathname.split("/")[2];
+                }
+            }
+
+            if (videoID) {
+                embedURL = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoID)}`;
+            }
+        }
+
+        if (!embedURL) {
+            return null;
+        }
+
+        const container = document.createElement("div");
+        container.className =
+            "mt-6 aspect-video overflow-hidden rounded-md bg-black";
+
+        const iframe = document.createElement("iframe");
+
+        iframe.src = embedURL;
+        iframe.className = "h-full w-full";
+        iframe.title = `${post.title} video`;
+        iframe.loading = "lazy";
+        iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+
+        container.appendChild(iframe);
+
+        return container;
+    }
+
+    function createPost(post: Post): HTMLElement {
+        const article = document.createElement("article");
+
+        article.className =
+            "rounded-xl border border-slate-700 bg-dropdown p-6 shadow";
+
+        const header = document.createElement("header");
+
+        const title = document.createElement("h2");
+        title.className =
+            "text-2xl font-semibold tracking-tight text-light-orange";
+        title.textContent = post.title;
+
+        const date = document.createElement("time");
+        date.className = "mt-2 block text-sm text-white";
+
+        const parsedDate = new Date(post.created_at);
+
+        if (!Number.isNaN(parsedDate.getTime())) {
+            date.dateTime = parsedDate.toISOString();
+
+            date.textContent = parsedDate.toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
+        } else {
+            date.textContent = post.created_at;
+        }
+
+        header.append(title, date);
+
+        const body = document.createElement("p");
+        body.className =
+            "mt-5 whitespace-pre-line font-mono leading-7 text-white";
+        body.textContent = post.body;
+
+        article.append(header, body);
+
+        const video = createVideoEmbed(post);
+
+        if (video) {
+            article.appendChild(video);
+        }
+
+        return article;
+    }
+
+    async function loadPosts() {
+        if (!feed || !loading || !errorBox) {
+            return;
+        }
+
+        try {
+            const response = await fetch(postApi, {
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Posts request failed: ${response.status}`);
+            }
+
+            const posts: Post[] = await response.json();
+
+            loading.remove();
+
+            if (posts.length === 0) {
+                const empty = document.createElement("p");
+
+                empty.className = "py-12 text-center text-neutral-500";
+
+                empty.textContent = "No posts yet.";
+
+                feed.appendChild(empty);
+
+                return;
+            }
+
+            for (const post of posts) {
+                feed.appendChild(createPost(post));
+            }
+        } catch (err) {
+            console.error(err);
+
+            loading.remove();
+            errorBox.classList.remove("hidden");
+        }
+    }
+
+    loadPosts();
+</script>

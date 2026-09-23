@@ -1,0 +1,89 @@
+<script is:inline>
+    window.addEventListener("load", () => {
+        const STORAGE_KEY = "lastVisited";
+        const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+
+        let last_visited = localStorage.getItem(STORAGE_KEY);
+        const now = new Date();
+
+        if (!last_visited) {
+            localStorage.setItem(STORAGE_KEY, now.toISOString());
+        } else if (
+            now.getTime() - new Date(last_visited).getTime() <
+            TWO_HOURS_MS
+        ) {
+            // User last visited within 2 hours
+            console.log(
+                "User has last visited within 2 hours; discarded sample point.",
+            );
+            return;
+        } else {
+            // Update timestamp if more than 2 hours have passed
+            localStorage.setItem(STORAGE_KEY, now.toISOString());
+        }
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Extract individual values
+        const utm_source = urlParams.get("utm_source");
+        const utm_medium = urlParams.get("utm_medium");
+        const utm_campaign = urlParams.get("utm_campaign");
+
+        const ua = navigator.userAgent;
+
+        const browser = /Edg\//.test(ua)
+            ? "Edge"
+            : /OPR\//.test(ua)
+              ? "Opera"
+              : /Firefox\//.test(ua)
+                ? "Firefox"
+                : /Chrome\/|CriOS\//.test(ua)
+                  ? "Chrome"
+                  : /Safari\//.test(ua)
+                    ? "Safari"
+                    : "Unknown";
+
+        const os = /Windows/.test(ua)
+            ? "Windows"
+            : /Android/.test(ua)
+              ? "Android"
+              : /iPhone|iPad|iPod/.test(ua) ||
+                  (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)
+                ? "iOS"
+                : /Mac/.test(ua)
+                  ? "macOS"
+                  : /Linux/.test(ua)
+                    ? "Linux"
+                    : "Unknown";
+
+        const device_type =
+            /iPad|Tablet/.test(ua) ||
+            (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)
+                ? "tablet"
+                : /Mobi|Android|iPhone|iPod/.test(ua)
+                  ? "mobile"
+                  : "desktop";
+
+        const load_time = Math.round(performance.now());
+        const payload = {
+            session_id: 0,
+            url: window.location.href,
+            referrer: document.referrer,
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            timestamp,
+            browser,
+            os,
+            device_type,
+            load_time,
+            last_visited,
+            is_bot: false,
+        };
+
+        // beacon API ensures data is sent even if the user closes the tab
+        navigator.sendBeacon(
+            "https://api.andrewforcouncil.ca/analytics",
+            JSON.stringify(payload),
+        );
+    });
+</script>

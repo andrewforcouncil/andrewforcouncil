@@ -45,14 +45,15 @@ const panelUrl = `${base}admin/`;
                         />
                     </div>
 
-                    <button class="admin-button" type="submit">Sign in</button>
+                    <button class="admin-button" type="submit">
+                        Sign in
+                    </button>
 
                     <p
                         id="login-status"
                         class="admin-status"
                         aria-live="polite"
-                    >
-                    </p>
+                    ></p>
                 </form>
 
                 <noscript>
@@ -90,7 +91,7 @@ const panelUrl = `${base}admin/`;
 
                     try {
                         const response = await fetch(
-                            "https://api.andrewforcouncil.com/auth/login",
+                            "https://api.andrewforcouncil.ca/auth",
                             {
                                 method: "POST",
                                 credentials: "include",
@@ -99,7 +100,7 @@ const panelUrl = `${base}admin/`;
                                     Accept: "application/json",
                                 },
                                 body: JSON.stringify({
-                                    email,
+                                    username: email,
                                     password,
                                 }),
                             },

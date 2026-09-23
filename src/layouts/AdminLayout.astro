@@ -1,87 +1,44 @@
 ---
-import "../styles/admin.css";
+import "../styles/global.css";
+
+import AdminSidebar from "../components/admin/AdminSidebar.astro";
+import AdminHeader from "../components/admin/AdminHeader.astro";
+import AdminSession from "../components/admin/AdminSession.astro";
 
 interface Props {
-    title?: string;
-    pageTitle?: string;
+    title: string;
+    description?: string;
+
+    active?: "dashboard" | "posts" | "analytics";
 }
 
-const { title = "Admin", pageTitle = "Dashboard" } = Astro.props;
+const { title, description, active = "dashboard" } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
-const currentPath = Astro.url.pathname;
-
-const adminHome = `${base}admin/`;
-const loginPage = `${base}admin/login/`;
-
-const navItems = [
-    { label: "Dashboard", href: adminHome },
-    // Add your own admin sections here.
-    // { label: "Content", href: `${base}admin/content/` },
-    // { label: "Users", href: `${base}admin/users/` },
-];
-
-const isCurrent = (href: string) => {
-    const normalizedCurrent = currentPath.endsWith("/")
-        ? currentPath
-        : `${currentPath}/`;
-
-    const normalizedHref = href.endsWith("/") ? href : `${href}/`;
-    return normalizedCurrent === normalizedHref;
-};
+const API_URL = "https://api.andrewforcouncil.ca";
 ---
 
 <!doctype html>
-<html lang="en" data-auth-pending>
+
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="noindex, nofollow" />
-        <title>{title}</title>
+
+        <meta name="viewport" content="width=device-width" />
+
+        <title>{title} | Admin</title>
     </head>
 
-    <body class="admin-body">
-        <div class="admin-shell">
-            <aside class="admin-sidebar">
-                <a class="admin-brand" href={adminHome}>Site Admin</a>
+    <body class="min-h-screen bg-neutral-100 text-neutral-900">
+        <AdminSidebar active={active} />
 
-                <nav class="admin-nav" aria-label="Admin navigation">
-                    {
-                        navItems.map((item) => (
-                            <a
-                                href={item.href}
-                                aria-current={
-                                    isCurrent(item.href) ? "page" : undefined
-                                }
-                            >
-                                {item.label}
-                            </a>
-                        ))
-                    }
-                </nav>
+        <main class="ml-64 min-h-screen">
+            <AdminHeader title={title} description={description} />
 
-                <div class="admin-sidebar-footer">
-                    <a href={base}>View public site</a>
-                </div>
-            </aside>
+            <section class="p-8">
+                <slot />
+            </section>
+        </main>
 
-            <main class="admin-main">
-                <header class="admin-header">
-                    <h1>{pageTitle}</h1>
-
-                    <!-- Replace this link with your auth provider's sign-out handler. -->
-                    <a
-                        class="admin-button admin-button--secondary"
-                        href={loginPage}
-                    >
-                        Sign out
-                    </a>
-                </header>
-
-                <div class="admin-content">
-                    <slot />
-                </div>
-            </main>
-        </div>
+        <AdminSession apiUrl={API_URL} />
     </body>
 </html>

@@ -1,0 +1,30 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import AdminCard from "../../components/admin/AdminCard.astro";
+---
+
+<AdminLayout
+    title="Analytics"
+    description="Website traffic overview"
+    active="analytics"
+>
+    <div class="space-y-6">
+        <AdminCard><!-- visitor count --></AdminCard>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+            <AdminCard
+                title="Countries / regions"
+                description="Visitor distribution by location"
+            >
+                <canvas id="location-chart"></canvas>
+            </AdminCard>
+
+            <AdminCard
+                title="Devices"
+                description="Visitor distribution by device"
+            >
+                <canvas id="device-chart"></canvas>
+            </AdminCard>
+        </div>
+    </div>
+</AdminLayout>

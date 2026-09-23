@@ -1,142 +1,99 @@
 ---
-import "../../styles/admin.css";
-
-interface Props {
-    title?: string;
-    pageTitle?: string;
-}
-
-const { title = "Admin", pageTitle = "Dashboard" } = Astro.props;
-
-const base = import.meta.env.BASE_URL;
-const currentPath = Astro.url.pathname;
-
-const adminHome = `${base}admin/`;
-const loginPage = `${base}admin/login/`;
-
-const navItems = [
-    {
-        label: "Dashboard",
-        href: adminHome,
-    },
-
-    // Add additional admin pages here:
-    // {
-    //   label: "Content",
-    //   href: `${base}admin/content/`,
-    // },
-    // {
-    //   label: "Users",
-    //   href: `${base}admin/users/`,
-    // },
-];
-
-function isCurrent(href: string): boolean {
-    const normalizedCurrent = currentPath.endsWith("/")
-        ? currentPath
-        : `${currentPath}/`;
-
-    const normalizedHref = href.endsWith("/") ? href : `${href}/`;
-
-    return normalizedCurrent === normalizedHref;
-}
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import AdminCard from "../../components/admin/AdminCard.astro";
 ---
 
-<!doctype html>
-<html lang="en" data-auth-pending>
-    <head>
-        <meta charset="UTF-8" />
+<AdminLayout
+    title="Dashboard"
+    description="Campaign administration"
+    active="dashboard"
+>
+    <div class="space-y-6">
+        <AdminCard
+            title="Welcome"
+            description="Campaign administration dashboard"
+        >
+            <p class="text-sm leading-6 text-neutral-600">
+                Use the sidebar to manage campaign content and review website
+                analytics.
+            </p>
+        </AdminCard>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <div class="grid gap-6 md:grid-cols-2">
+            <AdminCard title="Posts">
+                <p class="text-sm text-neutral-600">
+                    Create and manage campaign updates.
+                </p>
 
-        <meta name="robots" content="noindex, nofollow" />
+                <a
+                    href="/admin/posts/"
+                    class="mt-4 inline-block text-sm font-medium text-neutral-900 underline underline-offset-4"
+                >
+                    Manage posts
+                </a>
+            </AdminCard>
 
-        <title>{title}</title>
-    </head>
+            <AdminCard title="Analytics">
+                <p class="text-sm text-neutral-600">
+                    Review website traffic and visitor statistics.
+                </p>
 
-    <body class="admin-body">
-        <!--
-      This is displayed while require-admin.ts checks the user's session.
-      The actual admin panel remains hidden until authentication succeeds.
-    -->
-        <div class="admin-auth-loading" role="status" aria-live="polite">
-            Checking session…
+                <a
+                    href="/admin/analytics/"
+                    class="mt-4 inline-block text-sm font-medium text-neutral-900 underline underline-offset-4"
+                >
+                    View analytics
+                </a>
+            </AdminCard>
         </div>
+    </div>
+    <script is:inline>
+        const app = document.getElementById("admin-app");
+        const loading = document.getElementById("auth-loading");
 
-        <div class="admin-shell">
-            <aside class="admin-sidebar">
-                <a class="admin-brand" href={adminHome}> Site Admin </a>
+        if (!(app instanceof HTMLElement)) {
+            throw new Error("Admin app not found");
+        }
 
-                <nav class="admin-nav" aria-label="Admin navigation">
-                    {
-                        navItems.map((item) => (
-                            <a
-                                href={item.href}
-                                aria-current={
-                                    isCurrent(item.href) ? "page" : undefined
-                                }
-                            >
-                                {item.label}
-                            </a>
-                        ))
-                    }
-                </nav>
+        const apiURL = app.dataset.apiUrl;
 
-                <div class="admin-sidebar-footer">
-                    <a href={base}> View public site </a>
-                </div>
-            </aside>
+        async function checkSession() {
+            try {
+                const response = await fetch(`${apiURL}/auth/session`, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        Accept: "application/json",
+                    },
+                });
 
-            <main class="admin-main">
-                <header class="admin-header">
-                    <h1>{pageTitle}</h1>
+                if (!response.ok) {
+                    window.location.replace("/admin/login/");
+                    return;
+                }
 
-                    <!--
-            Replace this link with a call to your backend logout endpoint
-            when logout functionality is implemented.
-          -->
-                    <a
-                        class="admin-button admin-button--secondary"
-                        href={loginPage}
-                    >
-                        Sign out
-                    </a>
-                </header>
+                loading?.remove();
+                app.classList.remove("hidden");
+            } catch (error) {
+                console.error("Session check failed:", error);
 
-                <div class="admin-content">
-                    <slot />
-                </div>
-            </main>
-        </div>
+                window.location.replace("/admin/login/");
+            }
+        }
 
-        <!--
-      This script must remove data-auth-pending from the <html> element
-      after the backend confirms that the user is an administrator.
-    -->
-        <script>
-            import "../../scripts/admin";
-        </script>
-    </body>
-</html>
+        document
+            .getElementById("logout-button")
+            ?.addEventListener("click", async () => {
+                try {
+                    await fetch(`${apiURL}/auth/logout`, {
+                        method: "POST",
+                        credentials: "include",
+                    });
+                } finally {
+                    window.location.replace("/admin/login/");
+                }
+            });
 
-<style>
-    .admin-auth-loading {
-        min-height: 100vh;
-        display: none;
-        place-items: center;
-        padding: 24px;
-        color: var(--admin-muted);
-        text-align: center;
-    }
-
-    /*
-   * Hide the admin interface while authentication is being checked.
-   */
-    html[data-auth-pending] .admin-auth-loading {
-        display: grid;
-    }
-
-    html[data-auth-pending] .admin-shell {
-        display: none;
-    }
-</style>
+        checkSession();
+    </script>
+</AdminLayout>

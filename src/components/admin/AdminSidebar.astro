@@ -1,0 +1,61 @@
+---
+interface Props {
+    active?: "dashboard" | "posts" | "analytics";
+}
+
+const { active = "dashboard" } = Astro.props;
+
+const items = [
+    {
+        name: "Dashboard",
+        href: "/admin/",
+        id: "dashboard",
+    },
+    {
+        name: "Posts",
+        href: "/admin/posts/",
+        id: "posts",
+    },
+    {
+        name: "Analytics",
+        href: "/admin/analytics/",
+        id: "analytics",
+    },
+];
+---
+
+<aside class="fixed inset-y-0 left-0 w-64 border-r border-neutral-200 bg-white">
+    <div class="flex h-full flex-col">
+        <div class="border-b border-neutral-200 px-6 py-5">
+            <h1 class="text-lg font-semibold">Admin</h1>
+
+            <p class="mt-1 text-sm text-neutral-500">Campaign Dashboard</p>
+        </div>
+
+        <nav class="flex-1 space-y-1 p-4">
+            {items.map((item) => (
+                <a
+                    href={item.href}
+                    class:list={[
+                        "block rounded-md px-4 py-2 text-sm font-medium",
+                        item.id === active
+                            ? "bg-neutral-900 text-white"
+                            : "text-neutral-700 hover:bg-neutral-100",
+                    ]}
+                >
+                    {item.name}
+                </a>
+            ))}
+        </nav>
+
+        <div class="border-t border-neutral-200 p-4">
+            <button
+                id="logout-button"
+                type="button"
+                class="w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-left text-sm font-medium hover:bg-neutral-100"
+            >
+                Log out
+            </button>
+        </div>
+    </div>
+</aside>
