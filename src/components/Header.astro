@@ -5,7 +5,7 @@ import Button from "./Button.astro";
 const links = [
     { href: "/#platform", text: "My Platform" },
     { href: "/#about-me", text: "About Me" },
-    { href: "/posts", text: "Posts" },
+    { href: "/posts", text: "Posts", new: true },
     { href: "/contact", text: "Contact" },
     { href: "/get-involved", text: "Get Involved", button: true },
 ];
@@ -24,7 +24,7 @@ const links = [
 
         <!-- Mobile navigation -->
         <details class="group relative shrink-0 md:hidden" data-mobile-nav>
-            <summary class="flex h-11 w-11 cursor-pointer list-none items-center [&::-webkit-details-marker]:hidden justify-center rounded-lg transition-colors hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg transition-colors hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-blue-500 [&::-webkit-details-marker]:hidden">
                 <span class="sr-only">Toggle navigation menu</span>
 
                 <svg
@@ -69,11 +69,27 @@ const links = [
                                     href={link.href}
                                     class="block rounded-lg px-4 py-3 transition-colors hover:bg-black/5 hover:text-blue-400"
                                 >
-                                    {link.text}
+                                    <span class="relative inline-block">
+                                        {link.text}
+
+                                        {link.new && (
+                                            <span class="absolute -right-5 -top-2 rounded-full bg-blue-500 px-1.5 py-0.5 text-[0.6rem] font-bold leading-none text-white">
+                                                New!
+                                            </span>
+                                        )}
+                                    </span>
                                 </a>
                             ) : (
                                 <Button href={link.href} class="w-full">
-                                    {link.text}
+                                    <span class="relative inline-block">
+                                        {link.text}
+
+                                        {link.new && (
+                                            <span class="absolute -right-5 -top-2 rounded-full bg-blue-500 px-1.5 py-0.5 text-[0.6rem] font-bold leading-none text-white">
+                                                New!
+                                            </span>
+                                        )}
+                                    </span>
                                 </Button>
                             )}
                         </li>
@@ -92,10 +108,28 @@ const links = [
                                 href={link.href}
                                 class="transition-colors hover:text-blue-400"
                             >
-                                {link.text}
+                                <span class="relative inline-block">
+                                    {link.text}
+
+                                    {link.new && (
+                                        <span class="absolute -right-5 -top-2 rounded-full bg-blue-500 px-1.5 py-0.5 text-[0.6rem] font-bold leading-none text-white">
+                                            New!
+                                        </span>
+                                    )}
+                                </span>
                             </a>
                         ) : (
-                            <Button href={link.href}>{link.text}</Button>
+                            <Button href={link.href}>
+                                <span class="relative inline-block">
+                                    {link.text}
+
+                                    {link.new && (
+                                        <span class="absolute -right-5 -top-2 rounded-full bg-blue-500 px-1.5 py-0.5 text-[0.6rem] font-bold leading-none text-white">
+                                            New!
+                                        </span>
+                                    )}
+                                </span>
+                            </Button>
                         )}
                     </li>
                 ))}
